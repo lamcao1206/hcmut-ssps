@@ -1,3 +1,12 @@
+import { Route, Routes } from 'react-router-dom';
+import Welcome from './pages/welcome/Welcome';
+import NotFound from './pages/NotFound';
+
 export default function App() {
-  return <h1 className="text-3xl font-bold underline text-blue-600">Hello world!</h1>;
+  return (
+    <Routes>
+      <Route path="/" element={<Welcome />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
 }
