@@ -143,7 +143,7 @@ HCMUT_SSPS/
 ## Getting Started
 
 ### Prerequisites
-- Development environment setup
+- Development environment setup (e.g., Node.js, Python, or other relevant tools)
 - GitHub account
 - Familiarity with web/mobile development
 
