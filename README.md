@@ -103,7 +103,68 @@ The HCMUT_SSPS is a web and mobile application designed to:
 - User-centered design
 - Continuous feedback integration
 - Agile methodology
+## System Architecture and Design
 
+### 1. Layered Architecture
+![Layered Architecture](./docs/images/BoxlineDiagram.png)
+
+The system follows a 5-layer architecture pattern:
+- **Presentation Layer**: Handles user interfaces for both Students and SPSO
+- **Business Layer**: Contains controllers for different functionalities (Authentication, SPSO, Student, Printer, Report, Order, Payment)
+- **Service Layer**: Implements core business logic and services
+- **Persistence Layer**: Manages data models and object-relational mapping
+- **Database Layer**: Stores all system data in dedicated tables
+
+### 2. Component Interaction Diagram
+![Component Interaction](./docs/images/Component.png)
+
+The component diagram illustrates the interaction between three main parts:
+- **View**: User interface components including PrintServiceView and its subcomponents
+- **Controller**: Management layer handling business logic
+- **Model**: Database and data structure components
+
+Key interactions include:
+- Get Printer Information
+- Get Print Configuration
+- Get Order Logs
+- Printer Interaction
+- Balance Management
+
+### 3. System Deployment Architecture
+![Deployment Architecture](./docs/images/Deployment-Diagram.png)
+
+The system is deployed across multiple servers:
+
+#### Client Side
+- Personal Computer with HTML5 Browser
+
+#### Web Server (NodeJS)
+- ReactJS Framework
+- Key Components:
+  * Dashboard
+  * PrintService
+  * PrinterManagement
+
+#### Application Server (Python)
+- Django Framework
+- Controllers:
+  * Authenticate Controller
+  * SPSO Controller
+  * Student Controller
+  * Printer Controller
+  * Report Controller
+  * Order Controller
+  * Payment Controller
+
+#### Database Server
+- MySQL Database System
+- Schemas:
+  * Student
+  * SPSO
+  * Document
+  * PrintOrder
+  * Payment
+  * Report
 ## Usability Testing Strategy
 
 ### Testing Methodology
@@ -138,7 +199,7 @@ HCMUT_SSPS/
 - Web Application
 ### Recommended Development Tools
 - Version Control: GitHub
-- UI Prototyping: Figma/Adobe XD
+- UI Prototyping: Figma
 
 ## Getting Started
 
