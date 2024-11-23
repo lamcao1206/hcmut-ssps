@@ -8,6 +8,12 @@ This is a capstone project developed by students at Ho Chi Minh University of Te
 ### Purpose
 To provide an efficient, user-friendly digital printing solution that addresses the document printing needs of university students while managing printing resources effectively.
 
+### Contributors
+- Cao Ngọc Lâm - 2252419
+- Đặng Minh Khang - 2252287
+- Đặng Ngọc Phú - 2252617
+- Đoàn Anh Quang - 2252666
+
 ## System Description
 
 ### Core Functionality
