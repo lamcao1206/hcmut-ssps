@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import WebsiteBrand from './WebsiteBrand';
 import Tab from './Tab';
-import { useContext, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext'; // Import useAuth
 import Avatar from './Avatar';
 
 const tabs = [
@@ -18,7 +18,7 @@ function ButtonArrow({ isDropdownOpen, setIsDropdownOpen }) {
   };
 
   return (
-    <button className="absolute -bottom-1 -right-1 bg-gray-300  border-white border-2 rounded-full shadow" onClick={handleClick}>
+    <button className="absolute -bottom-1 -right-1 bg-gray-300 border-white border-2 rounded-full shadow" onClick={handleClick}>
       <svg className={`h-4 w-4 transform ${isDropdownOpen ? 'rotate-180' : 'rotate-0'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
         <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
       </svg>
@@ -37,13 +37,12 @@ const elements = [
 
 function Dropdown({ setIsDropdownOpen }) {
   const navigate = useNavigate();
-  const { setUser, setToken } = useContext(AuthContext);
+  const { setUser } = useAuth();
 
   const handleOptionClick = (link) => {
     setIsDropdownOpen(false);
     if (link === '/') {
       setUser(null);
-      setToken(null);
       localStorage.clear();
     }
     navigate(link);
@@ -62,7 +61,7 @@ function Dropdown({ setIsDropdownOpen }) {
 
 function NavBar() {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth(); // Access user state
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
@@ -72,13 +71,12 @@ function NavBar() {
           <WebsiteBrand onClick={() => navigate('/')} />
           <div className="flex justify-center items-center gap-1">{user?.token && tabs.map((tab) => <Tab key={tab.content} link={tab.link} content={tab.content} />)}</div>
         </div>
-        {user.token ? (
+        {user?.token ? (
           <AvatarContainer>
             <div className="flex flex-col justify-between items-end">
               <p className="font-medium">Cao Ngọc Lâm</p>
-              <p className="font-light">{user.role == 'student' && 'Học sinh'}</p>
+              <p className="font-light">{user.role === 'student' && 'Học sinh'}</p>
             </div>
-
             <Avatar className={'h-12 rounded-full'} />
             <ButtonArrow isDropdownOpen={isDropdownOpen} setIsDropdownOpen={setIsDropdownOpen} />
             {isDropdownOpen && <Dropdown setIsDropdownOpen={setIsDropdownOpen} />}
