@@ -33,7 +33,7 @@ export default function AboutTeam() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {teamMembers.map((member, index) => (
           <div key={index} className="p-4">
-            <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-6 rounded-lg shadow-lg text-center transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+            <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-6 rounded-lg shadow-lg text-center">
               <img src={member.image} alt={member.name} className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white" />
               <h4 className="text-xl font-semibold mb-2 text-white">{member.name}</h4>
               <p className="text-gray-200 mb-2">{member.role}</p>
