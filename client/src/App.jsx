@@ -5,6 +5,7 @@ import { AuthContext } from './contexts/AuthContext';
 import { Routes, Route } from 'react-router-dom';
 import Footer from './components/ui/Footer';
 import NavBar from './components/ui/NavBar';
+import Login from './pages/welcome/Login';
 
 export default function App() {
   const [user, setUser] = useState({ token: null, role: '', files: [] });
@@ -23,6 +24,7 @@ export default function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Welcome />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
