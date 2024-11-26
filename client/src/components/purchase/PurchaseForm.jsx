@@ -1,12 +1,15 @@
-import { useState } from 'react';
-import Button from '../ui/Button';
+import React, { useState } from 'react';
+import Button from '../../components/ui/Button';
 
 export default function PurchaseForm() {
   const [paper, setPaper] = useState(0);
 
   const handleChangePaper = (e) => {
-    const value = e.target.value;
-    setPaper(value);
+    setPaper(e.target.value);
+  };
+
+  const formatCurrency = (number) => {
+    return new Intl.NumberFormat('de-DE').format(number);
   };
 
   return (
@@ -37,7 +40,7 @@ export default function PurchaseForm() {
         </div>
         <div className="mb-6">
           <p className="text-gray-700 text-sm">
-            Tổng số tiền của bạn là: <span className="font-bold">{paper == 0 ? '' : `${paper * 500} VND`}</span>
+            Tổng số tiền của bạn là: <span className="font-bold">{paper == 0 ? '...' : `${formatCurrency(paper * 500)} VND`}</span>
           </p>
         </div>
         <div className="flex items-center justify-center">

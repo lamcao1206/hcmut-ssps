@@ -8,7 +8,7 @@ import Avatar from './Avatar';
 const tabs = [
   { link: '/', content: 'Trang chủ' },
   { link: '/print', content: 'In tài liệu' },
-  { link: '/log', content: 'Xem đơn in' },
+  { link: '/history', content: 'Xem đơn in' },
   { link: '/payment', content: 'Mua trang in' },
 ];
 
