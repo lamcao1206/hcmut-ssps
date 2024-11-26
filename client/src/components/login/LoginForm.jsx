@@ -1,24 +1,20 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import Input from '../ui/Input';
 import Button from '../ui/Button';
 
 function LoginForm({ role, inputs }) {
-  const { setUser } = useContext(AuthContext);
+  const { user, setUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const user = {};
-
-    formData.forEach((value, key) => {
-      user[key] = value;
+    setUser({
+      token: '123',
+      files: [],
+      role,
     });
-
-    user.role = role;
-    setUser(user);
+    // localStorage.setItem('user', JSON.stringify(user));
     navigate('/');
   };
 
