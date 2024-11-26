@@ -8,10 +8,10 @@ export default function Purchase() {
   return (
     <div className="bg-gray-100 h-screen flex flex-col justify-center items-center">
       <div className="mb-6 fixed top-24">
-        <button className={`px-4 py-2 mr-2 font-bold ${view === 'form' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'} rounded`} onClick={() => setView('form')}>
+        <button className={`w-18 px-4 py-2 mr-2 font-bold ${view === 'form' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'} rounded`} onClick={() => setView('form')}>
           Đơn thanh toán
         </button>
-        <button className={`px-4 py-2 font-bold ${view === 'history' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'} rounded`} onClick={() => setView('history')}>
+        <button className={`w-18 px-4 py-2 font-bold ${view === 'history' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'} rounded`} onClick={() => setView('history')}>
           Lịch sử giao dịch
         </button>
       </div>

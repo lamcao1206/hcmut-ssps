@@ -13,7 +13,7 @@ function LoginForm({ role, inputs }) {
     setUser({
       token: '123',
       role: 'student',
-      files: ['1.pdf', '2.pdf'],
+      files: ['1.pdf', '2.pdf', '3.pdf', '4.pdf', '5.pdf', '6.pdf', '7.pdf', '8.pdf', '9.pdf', '10.pdf'],
     });
     localStorage.setItem('user', JSON.stringify(user));
     navigate('/');

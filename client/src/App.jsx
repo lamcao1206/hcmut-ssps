@@ -9,6 +9,7 @@ import Login from './pages/welcome/Login';
 import StudentDashboard from './pages/student/StudentDashboard';
 import { useAuth } from './contexts/AuthContext';
 import Purchase from './pages/student/Purchase';
+import Print from './pages/student/Print';
 
 export default function App() {
   const { user } = useAuth();
@@ -19,6 +20,7 @@ export default function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={user?.role === 'student' ? <StudentDashboard /> : <Welcome />} />
+        <Route path="/print" element={<Print />} />
         <Route path="/payment" element={<Purchase />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
