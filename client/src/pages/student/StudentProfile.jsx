@@ -31,7 +31,7 @@ function StudentProfile() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
       <button className="mb-4 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700" onClick={() => navigate('/')}>
-        Back to Home
+        Quay lại trang chủ
       </button>
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <div className="flex flex-col items-center">

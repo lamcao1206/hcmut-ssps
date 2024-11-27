@@ -11,6 +11,7 @@ import Print from './pages/student/Print';
 import StudentProfile from './pages/student/StudentProfile';
 import DocumentConfig from './pages/student/DocumentConfig';
 import History from './pages/student/History';
+import SPSODashboard from './pages/spso/SPSODashboard';
 
 export default function App() {
   const { user } = useAuth();
@@ -19,18 +20,26 @@ export default function App() {
     <>
       <NavBar />
       <Routes>
+        {user && user.role === 'student' && (
+          <Route>
+            <Route path="/" element={<StudentDashboard />} />
+            <Route path="/payment" element={<Purchase />} />
+            <Route path="/profile" element={<StudentProfile />} />
+            <Route path="/history" element={<History />} />
+            <Route path="print">
+              <Route index element={<Print />} />
+              <Route path="config" element={<DocumentConfig />} />
+            </Route>
+          </Route>
+        )}
+
+        {user && user.role == 'spso' && (
+          <Route>
+            <Route path="/" element={<SPSODashboard />} />
+          </Route>
+        )}
+        <Route path="/" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={user?.role === 'student' ? <StudentDashboard /> : <Welcome />} />
-        <Route path="/print" element={<Print />} />
-        <Route path="/payment" element={<Purchase />} />
-        <Route path="/profile" element={<StudentProfile />} />
-        <Route path="print">
-          <Route index element={<Print />} />
-          <Route path="config" element={<DocumentConfig />} />
-        </Route>
-        <Route path="history">
-          <Route index element={<History />} />
-        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

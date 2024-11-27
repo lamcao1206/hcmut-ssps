@@ -10,6 +10,7 @@ function LoginForm({ role, inputs }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setUser({
+      username: 'Cao Ngọc Lâm',
       token: '123',
       files: [],
       role,

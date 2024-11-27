@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import WebsiteBrand from './WebsiteBrand';
 import Tab from './Tab';
 import { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext'; // Import useAuth
+import { useAuth } from '../../contexts/AuthContext';
 import Avatar from './Avatar';
 
 const tabs = [
@@ -10,6 +10,13 @@ const tabs = [
   { link: '/print', content: 'In tài liệu' },
   { link: '/history', content: 'Xem đơn in' },
   { link: '/payment', content: 'Mua trang in' },
+];
+
+const SPSOTabs = [
+  { link: '/', content: 'Trang chủ' },
+  { link: '/management', content: 'Quản lí máy in' },
+  { link: '/config', content: 'Cấu hình' },
+  { link: '/report', content: 'Báo cáo' },
 ];
 
 function ButtonArrow({ isDropdownOpen, setIsDropdownOpen }) {
@@ -69,13 +76,17 @@ function NavBar() {
       <div className="w-[1400px] h-full flex justify-between items-center">
         <div className="flex justify-center items-center gap-4">
           <WebsiteBrand onClick={() => navigate('/')} />
-          <div className="flex justify-center items-center gap-1">{user?.token && tabs.map((tab) => <Tab key={tab.content} link={tab.link} content={tab.content} />)}</div>
+          <div className="flex justify-center items-center gap-1">
+            {user?.role === 'student' && tabs.map((tab) => <Tab key={tab.content} link={tab.link} content={tab.content} />)}
+            {user?.role === 'spso' && SPSOTabs.map((tab) => <Tab key={tab.content} link={tab.link} content={tab.content} />)}
+          </div>
         </div>
         {user?.token ? (
           <AvatarContainer>
             <div className="flex flex-col justify-between items-end">
-              <p className="font-medium">Cao Ngọc Lâm</p>
+              <p className="font-medium">{user.username}</p>
               <p className="font-light">{user.role === 'student' && 'Học sinh'}</p>
+              <p className="font-light">{user.role === 'spso' && 'SPSO'}</p>
             </div>
             <Avatar className={'h-12 rounded-full'} />
             <ButtonArrow isDropdownOpen={isDropdownOpen} setIsDropdownOpen={setIsDropdownOpen} />

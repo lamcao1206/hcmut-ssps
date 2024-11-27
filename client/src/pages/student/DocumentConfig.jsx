@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function ConfigInput({ label, id, options }) {
   return (
     <div className="flex items-center justify-between">
-      <label className="text-gray-700 text-sm font-bold" htmlFor={id}>
+      <label className="text-gray-700 text-md font-bold" htmlFor={id}>
         {label}
       </label>
       <div className="relative w-1/2 ml-2">
@@ -32,7 +32,7 @@ function RangeInput({ label, id }) {
 
   return (
     <div className="flex items-center justify-between">
-      <label className="text-gray-700 text-sm font-bold mb-2" htmlFor={id}>
+      <label className="text-gray-700 text-md font-bold mb-2" htmlFor={id}>
         {label}
       </label>
       <div className="flex items-center">
@@ -59,9 +59,15 @@ function PDFDisplay({ filePath }) {
 
 export default function DocumentConfig() {
   const location = useLocation();
+  const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const fileName = params.get('file') || 'report.pdf'; // Default to 'report.pdf' if no file is specified
   const filePath = `/src/assets/report.pdf`;
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    navigate('/print');
+  };
 
   return (
     <div className="bg-gray-100 h-screen flex flex-col items-center gap-4 p-4">
@@ -82,7 +88,9 @@ export default function DocumentConfig() {
             <ConfigInput label="Hướng in" id="5" options={['Thẳng đứng', 'Ngang']} />
           </div>
           <div className="flex justify-end gap-2 mt-14">
-            <button className="px-4 py-2 bg-gray-300 text-gray-700 font-bold rounded hover:bg-gray-400">Quay lại </button>
+            <button className="px-4 py-2 bg-gray-300 text-gray-700 font-bold rounded hover:bg-gray-400" onClick={handleCancel}>
+              Quay lại{' '}
+            </button>
             <button className="px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700">Xác nhận</button>
           </div>
         </div>
