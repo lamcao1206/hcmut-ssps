@@ -7,7 +7,7 @@ const pieData = [
   { name: 'Buổi tối', value: 28 },
 ];
 
-const COLORS = ['#8884d8', '#82ca9d', '#ffc658'];
+const COLORS = ['#6366f1', '#fda4af', '#d1d5db'];
 
 function OverviewCard({ title, value, percentage, trend }) {
   const trendColor = trend === 'up' ? 'text-green-500' : 'text-red-500';
@@ -94,11 +94,11 @@ export default function SPSODashboard() {
           <OverviewCard title="Lượt đăng nhập thành công" value="200" percentage="20%" trend="up" />
           <OverviewCard title="Lần sử dụng dịch vụ in" value="49" percentage="5.1%" trend="down" />
           <OverviewCard title="Số trang A4 sử dụng" value="300k" percentage="20%" trend="up" />
-          <OverviewCard title="Số trang A4 đã bán" value="450k" percentage="5.1%" trend="down" />
+          <OverviewCard title="Số trang A4 đã giao dịch" value="450k" percentage="5.1%" trend="down" />
         </div>
         <div className="grid grid-cols-3 gap-6">
           <div className="col-span-2 bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">Yêu cầu in</h2>
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">Đơn in</h2>
             <PrintRequest fileName="Computer_Network.pdf" date="18/10/2024" pages="24 Trang" status="success" />
             <PrintRequest fileName="DSA.pdf" date="20/10/2024" pages="24 Trang" status="pending" />
             <PrintRequest fileName="PPL.pdf" date="09/10/2024" pages="24 Trang" status="error" />

@@ -12,6 +12,7 @@ import StudentProfile from './pages/student/StudentProfile';
 import DocumentConfig from './pages/student/DocumentConfig';
 import History from './pages/student/History';
 import SPSODashboard from './pages/spso/SPSODashboard';
+import SPSOProfile from './pages/spso/SPSOProfile';
 
 export default function App() {
   const { user } = useAuth();
@@ -36,6 +37,7 @@ export default function App() {
         {user && user.role == 'spso' && (
           <Route>
             <Route path="/" element={<SPSODashboard />} />
+            <Route path="/profile" element={<SPSOProfile />} />
           </Route>
         )}
         <Route path="/" element={<Welcome />} />

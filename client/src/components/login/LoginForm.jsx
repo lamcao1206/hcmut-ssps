@@ -15,7 +15,6 @@ function LoginForm({ role, inputs }) {
       files: [],
       role,
     });
-    // localStorage.setItem('user', JSON.stringify(user));
     navigate('/');
   };
 
