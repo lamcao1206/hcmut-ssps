@@ -13,6 +13,7 @@ import DocumentConfig from './pages/student/DocumentConfig';
 import History from './pages/student/History';
 import SPSODashboard from './pages/spso/SPSODashboard';
 import SPSOProfile from './pages/spso/SPSOProfile';
+import SystemConfig from './pages/spso/SystemConfig';
 
 export default function App() {
   const { user } = useAuth();
@@ -37,6 +38,7 @@ export default function App() {
           <Route>
             <Route path="/" element={<SPSODashboard />} />
             <Route path="/profile" element={<SPSOProfile />} />
+            <Route path="/config" element={<SystemConfig />} />
           </Route>
         )}
         <Route path="/" element={<Welcome />} />
