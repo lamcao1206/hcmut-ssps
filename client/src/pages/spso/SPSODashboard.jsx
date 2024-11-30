@@ -79,9 +79,9 @@ function ReportChart() {
 
 export default function SPSODashboard() {
   return (
-    <div className="bg-gray-100 h-screen flex flex-col justify-start items-center gap-5">
+    <div className="bg-gray-100 h-[800px] flex flex-col justify-start items-center gap-5">
       <div className="w-fit">
-        <div className="text-gray-500 text-lg mt-[90px] bg-white p-2 flex items-center space-x-2 rounded-lg shadow-lg">
+        <div className="text-gray-500 text-lg mt-[80px] bg-white p-2 flex items-center space-x-2 rounded-lg shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>

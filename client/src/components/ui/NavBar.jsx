@@ -8,7 +8,7 @@ import Avatar from './Avatar';
 const tabs = [
   { link: '/', content: 'Trang chủ' },
   { link: '/print', content: 'In tài liệu' },
-  { link: '/history', content: 'Xem đơn in' },
+  { link: '/orders', content: 'Xem đơn in' },
   { link: '/payment', content: 'Mua trang in' },
 ];
 
@@ -81,10 +81,10 @@ function NavBar() {
             {user?.role === 'spso' && SPSOTabs.map((tab) => <Tab key={tab.content} link={tab.link} content={tab.content} />)}
           </div>
         </div>
-        {user?.token ? (
+        {user?.role ? (
           <AvatarContainer>
             <div className="flex flex-col justify-between items-end">
-              <p className="font-medium">{user.username}</p>
+              <p className="font-medium">{user.name}</p>
               <p className="font-light">{user.role === 'student' && 'Học sinh'}</p>
               <p className="font-light">{user.role === 'spso' && 'SPSO'}</p>
             </div>

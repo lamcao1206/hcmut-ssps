@@ -1,15 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import axios from 'axios';
 
 function UploadBoxContainer({ children }) {
   return <div className="container bg-white shadow-2xl rounded-lg h-[450px] w-[450px] p-[15px]">{children}</div>;
 }
 
-function UploadBoxHeader() {
+function UploadBoxHeader({ validTypes = [] }) {
   return (
     <header className="mb-2 text-center">
       <h1 className="text-xl font-medium text-blue-600">Tải tài liệu của bạn tại đây</h1>
-      <p className="text-gray-500 text-md">Chỉ chấp nhận định dạng .docx và .pdf</p>
+      <p className="text-gray-500 text-md">Chỉ chấp nhận định dạng: {validTypes.map((type) => type.replace('application/', '')).join(', ')}</p>
     </header>
   );
 }
@@ -42,12 +43,26 @@ function UploadBoxForm({ onDrop, onFileChange, openFilePicker }) {
 
 function UploadBox() {
   const [file, setFile] = useState(null);
-
+  const [validTypes, setValidTypes] = useState([]);
   const { user, setUser } = useAuth();
   const fileInputRef = useRef();
 
+  useEffect(() => {
+    const fetchValidTypes = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/system');
+        console.log(response.data);
+        const { allowExtensions } = response.data;
+        setValidTypes(allowExtensions.map((ext) => `application/${ext}`));
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchValidTypes();
+  }, []);
+
   const validateFile = (file) => {
-    const validTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
     return file && validTypes.includes(file.type);
   };
 
@@ -58,7 +73,7 @@ function UploadBox() {
     if (validateFile(droppedFile)) {
       setFile(droppedFile);
     } else {
-      alert('Chỉ chấp nhận các tệp .docx hoặc .pdf');
+      alert('Chỉ chấp nhận các tệp :' + validTypes.join(', '));
     }
   };
 
@@ -69,7 +84,7 @@ function UploadBox() {
       setFile(selectedFile);
       setUser((prevUser) => ({ ...prevUser, files: [...prevUser.files, selectedFile.name] }));
     } else {
-      alert('Chỉ chấp nhận các tệp .docx hoặc .pdf');
+      alert('Chỉ chấp nhận các tệp :' + validTypes.join(', '));
     }
   };
 
@@ -81,7 +96,7 @@ function UploadBox() {
 
   return (
     <UploadBoxContainer>
-      <UploadBoxHeader />
+      <UploadBoxHeader validTypes={validTypes} />
       <UploadBoxForm onDrop={handleDrop} onFileChange={handleFileChange} openFilePicker={openFilePicker} />
       <input ref={fileInputRef} type="file" hidden id="fileInput" onChange={handleFileChange} accept=".docx, .pdf" />
     </UploadBoxContainer>

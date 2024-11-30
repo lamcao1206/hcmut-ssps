@@ -1,5 +1,9 @@
+import { useAuth } from '../../contexts/AuthContext';
+
 function Avatar({ className }) {
-  return <img src="/src/assets/avatar.png" alt="avatar" className={className} />;
+  const { user } = useAuth();
+  console.log(user);
+  return <img src={user.avatar} alt="avatar" className={className} />;
 }
 
 export default Avatar;

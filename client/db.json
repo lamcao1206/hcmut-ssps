@@ -1,0 +1,137 @@
+{
+  "system": {
+    "allowExtensions": ["pdf", "docx"],
+    "defaultPages": 100
+  },
+  "student": [
+    {
+      "id": "2252666",
+      "avatar": "/src/assets/avatar.png",
+      "role": "student",
+      "files": ["Báo cáo BTL DB 1.pdf"],
+      "name": "Đoàn Anh Quang",
+      "email": "quang.doan0801@hcmut.edu.vn",
+      "password": "123456",
+      "gender": "Nam",
+      "page": "390",
+      "registerDate": "2021-07-15T00:00:00Z",
+      "lastAccessDate": "2021-07-15T00:00:00Z"
+    },
+    {
+      "id": "2252617",
+      "name": "Đặng Ngọc Phú",
+      "email": "phu.dangngoc@hcmut.edu.vn",
+      "avatar": "/src/assets/phu.png",
+      "password": "123456",
+      "gender": "Nam",
+      "phone": "0987654321",
+      "page": "100",
+      "registerDate": "2021-07-15T00:00:00Z",
+      "lastAccessDate": "2021-07-15T00:00:00Z"
+    }
+  ],
+  "spso": [
+    {
+      "id": "2252419",
+      "name": "Cao Ngọc Lâm",
+      "username": "lam.cao1206",
+      "avatar": "/src/assets/lam.jpg",
+      "password": "123456",
+      "gender": "Nam",
+      "dateOfBirth": "2021-06-12T00:00:00Z"
+    },
+    {
+      "id": "2252287",
+      "name": "Đặng Minh Khang",
+      "username": "khang.dangminh26",
+      "avatar": "/src/assets/avatar.png",
+      "password": "123456",
+      "gender": "Nam",
+      "dateOfBirth": "2021-06-12T00:00:00Z"
+    }
+  ],
+  "printer": [
+    {
+      "Brand": "HP",
+      "Name": "Máy in 1",
+      "Model": "LaserJet Pro M404dn",
+      "Status": "Inactive",
+      "CampusName": "Cơ sở 1",
+      "Building": "C6",
+      "RoomNumber": "101",
+      "Description": "High-speed black and white printer",
+      "id": "717f"
+    },
+    {
+      "Brand": "Canon",
+      "Name": "Máy in 2",
+      "Model": "imageCLASS MF743Cdw",
+      "Status": "Active",
+      "CampusName": "Cơ sở 2",
+      "Building": "H6",
+      "RoomNumber": "203",
+      "Description": "Color laser printer with multifunction capability",
+      "id": "4cac"
+    },
+    {
+      "Brand": "Epson",
+      "Name": "Máy in 3",
+      "Model": "WorkForce Pro WF-7840",
+      "Status": "Inactive",
+      "CampusName": "Cơ sở 1",
+      "Building": "B4",
+      "RoomNumber": "302",
+      "Description": "Large-format color inkjet printer",
+      "id": "0c94"
+    },
+    {
+      "Brand": "Brother",
+      "Name": "Máy in 4",
+      "Model": "HL-L3270CDW",
+      "Status": "Active",
+      "CampusName": "cơ sở 1",
+      "Building": "C4",
+      "RoomNumber": "305",
+      "Description": "Reliable color laser printer for office use",
+      "id": "211d"
+    },
+    {
+      "Brand": "Lexmark",
+      "Name": "Máy in 5",
+      "Model": "MB3442i",
+      "Status": "Active",
+      "CampusName": "cơ sở 2",
+      "Building": "B1",
+      "RoomNumber": "102",
+      "Description": "Compact multifunction printer with wireless connectivity",
+      "id": "c49d"
+    },
+    {
+      "Brand": "Samsung",
+      "Name": "Máy in 6",
+      "Model": "Xpress M2020W",
+      "Status": "Inactive",
+      "CampusName": "cơ sở 2",
+      "Building": "A5",
+      "RoomNumber": "101",
+      "Description": "Compact monochrome laser printer with wireless printing",
+      "id": "8965"
+    }
+  ],
+  "transaction": [
+    {
+      "id": "3978",
+      "userId": "2252666",
+      "paymentMethod": "Thẻ tín dụng",
+      "amount": 50000,
+      "purchasedDate": "2024-11-30T10:08:13.206Z"
+    },
+    {
+      "id": "13c4",
+      "userId": "2252666",
+      "paymentMethod": "Thẻ tín dụng",
+      "amount": 10000,
+      "purchasedDate": "2024-11-30T10:09:31.520Z"
+    }
+  ]
+}

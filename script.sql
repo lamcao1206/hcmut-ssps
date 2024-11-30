@@ -1,4 +1,4 @@
-  CREATE TABLE Student (
+CREATE TABLE Student (
  StudentID INT PRIMARY KEY AUTO_INCREMENT,
  Name VARCHAR(100) NOT NULL,
  Email VARCHAR(100) NOT NULL UNIQUE,
@@ -87,14 +87,14 @@ VALUES
 ('Nguyen Linh', 'Ll@hcmut.edu.vn', 'SS', 'password456', '2000-09-30');
 
 
-INSERT INTO Printer (Brand, Model, Status, CampusName, Building, RoomNumber, Description)
+INSERT INTO Printer (Brand, Name, Model, Status, CampusName, Building, RoomNumber, Description)
 VALUES
-('HP', 'LaserJet Pro M404dn', 'Active', 'CS1', 'C6', '101', 'High-speed black and white printer'),
-('Canon', 'imageCLASS MF743Cdw', 'Active', 'CS2', 'H6', '203', 'Color laser printer with multifunction capability'),
-('Epson', 'WorkForce Pro WF-7840', 'Inactive', 'CS2', 'B4', '302', 'Large-format color inkjet printer'),
-('Brother', 'HL-L3270CDW', 'Active', 'CS1', 'C4', '305', 'Reliable color laser printer for office use'),
-('Lexmark', 'MB3442i', 'Active', 'CS2', 'B1', 'B^', 'Compact multifunction printer with wireless connectivity'),
-('Samsung', 'Xpress M2020W', 'Inactive', 'CS1', 'A5', '101', 'Compact monochrome laser printer with wireless printing');
+('HP', 'Máy in 1','LaserJet Pro M404dn', 'Active', 'CS1', 'C6', '101', 'High-speed black and white printer'),
+('Canon', 'Máy in 1','imageCLASS MF743Cdw', 'Active', 'CS2', 'H6', '203', 'Color laser printer with multifunction capability'),
+('Epson', 'Máy in 1','WorkForce Pro WF-7840', 'Inactive', 'CS2', 'B4', '302', 'Large-format color inkjet printer'),
+('Brother', 'Máy in 1','HL-L3270CDW', 'Active', 'CS1', 'C4', '305', 'Reliable color laser printer for office use'),
+('Lexmark', 'Máy in 1','MB3442i', 'Active', 'CS2', 'B1', 'B^', 'Compact multifunction printer with wireless connectivity'),
+('Samsung', 'Máy in 1','Xpress M2020W', 'Inactive', 'CS1', 'A5', '101', 'Compact monochrome laser printer with wireless printing');
 
 INSERT INTO Manage (PrinterID, SPSOID, AssignedDate)
 VALUES

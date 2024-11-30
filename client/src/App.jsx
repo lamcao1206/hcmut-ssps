@@ -16,7 +16,6 @@ import SPSOProfile from './pages/spso/SPSOProfile';
 
 export default function App() {
   const { user } = useAuth();
-  console.log(user);
   return (
     <>
       <NavBar />
@@ -26,7 +25,7 @@ export default function App() {
             <Route path="/" element={<StudentDashboard />} />
             <Route path="/payment" element={<Purchase />} />
             <Route path="/profile" element={<StudentProfile />} />
-            <Route path="/history" element={<History />} />
+            <Route path="/orders" element={<History />} />
             <Route path="print">
               <Route index element={<Print />} />
               <Route path="config" element={<DocumentConfig />} />
