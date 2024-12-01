@@ -14,8 +14,9 @@ const tabs = [
 
 const SPSOTabs = [
   { link: '/', content: 'Trang chủ' },
-  { link: '/management', content: 'Quản lí máy in' },
-  { link: '/config', content: 'Cấu hình' },
+  { link: '/printer-management', content: 'Quản lí máy in' },
+  { link: '/system-config', content: 'Cấu hình' },
+  { link: '/orders', content: 'Lịch sử in' },
   { link: '/report', content: 'Báo cáo' },
 ];
 

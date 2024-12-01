@@ -98,7 +98,7 @@ function UploadBox() {
     <UploadBoxContainer>
       <UploadBoxHeader validTypes={validTypes} />
       <UploadBoxForm onDrop={handleDrop} onFileChange={handleFileChange} openFilePicker={openFilePicker} />
-      <input ref={fileInputRef} type="file" hidden id="fileInput" onChange={handleFileChange} accept=".docx, .pdf" />
+      <input ref={fileInputRef} type="file" hidden id="fileInput" onChange={handleFileChange} accept={validTypes.join(',')} />
     </UploadBoxContainer>
   );
 }

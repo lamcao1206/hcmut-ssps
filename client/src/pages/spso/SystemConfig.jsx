@@ -60,13 +60,29 @@ export default function SystemConfig() {
               <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="allowExtensions">
                 Định dạng cho phép
               </label>
-              <input id="allowExtensions" name="allowExtensions" type="text" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={editConfig.allowExtensions} onChange={handleChange} disabled={!allowEdit} />
+              <input
+                id="allowExtensions"
+                name="allowExtensions"
+                type="text"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value={editConfig.allowExtensions}
+                onChange={handleChange}
+                disabled={!allowEdit}
+              />
             </div>
             <div className="mb-8">
               <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="defaultPages">
                 Số trang mặc định cấp cho mỗi sinh viên
               </label>
-              <input id="defaultPages" name="defaultPages" type="number" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={editConfig.defaultPages} onChange={handleChange} disabled={!allowEdit} />
+              <input
+                id="defaultPages"
+                name="defaultPages"
+                type="number"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value={editConfig.defaultPages}
+                onChange={handleChange}
+                disabled={!allowEdit}
+              />
             </div>
             <div className="flex justify-end gap-4">
               <button className="px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 transition duration-300" onClick={handleSave} disabled={!allowEdit}>
@@ -75,7 +91,10 @@ export default function SystemConfig() {
               <button className="px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-700 transition duration-300" onClick={() => setAllowEdit(true)}>
                 Chỉnh sửa
               </button>
-              <button className="px-4 py-2 bg-gray-300 text-gray-700 font-bold rounded hover:bg-gray-400 transition duration-300" onClick={() => setEditConfig({ allowExtensions: config.allowExtensions.join(', '), defaultPages: config.defaultPages })}>
+              <button
+                className="px-4 py-2 bg-gray-300 text-gray-700 font-bold rounded hover:bg-gray-400 transition duration-300"
+                onClick={() => setEditConfig({ allowExtensions: config.allowExtensions.join(', '), defaultPages: config.defaultPages })}
+              >
                 Huỷ
               </button>
             </div>

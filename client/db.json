@@ -1,31 +1,36 @@
 {
   "system": {
-    "allowExtensions": ["pdf", "docx"],
-    "defaultPages": 100
+    "allowExtensions": [
+      "pdf",
+      "docx",
+      "png"
+    ],
+    "defaultPages": 300
   },
   "student": [
     {
       "id": "2252666",
       "avatar": "/src/assets/avatar.png",
       "role": "student",
-      "files": ["Báo cáo BTL DB 1.pdf"],
+      "files": [],
       "name": "Đoàn Anh Quang",
       "email": "quang.doan0801@hcmut.edu.vn",
       "password": "123456",
       "gender": "Nam",
-      "page": "390",
+      "page": "690",
       "registerDate": "2021-07-15T00:00:00Z",
       "lastAccessDate": "2021-07-15T00:00:00Z"
     },
     {
       "id": "2252617",
+      "avatar": "/src/assets/phu.png",
+      "role": "student",
+      "files": [],
       "name": "Đặng Ngọc Phú",
       "email": "phu.dangngoc@hcmut.edu.vn",
-      "avatar": "/src/assets/phu.png",
       "password": "123456",
       "gender": "Nam",
-      "phone": "0987654321",
-      "page": "100",
+      "page": "335",
       "registerDate": "2021-07-15T00:00:00Z",
       "lastAccessDate": "2021-07-15T00:00:00Z"
     }
@@ -50,12 +55,12 @@
       "dateOfBirth": "2021-06-12T00:00:00Z"
     }
   ],
-  "printer": [
+  "printers": [
     {
       "Brand": "HP",
       "Name": "Máy in 1",
       "Model": "LaserJet Pro M404dn",
-      "Status": "Inactive",
+      "Status": "Đang hoạt động",
       "CampusName": "Cơ sở 1",
       "Building": "C6",
       "RoomNumber": "101",
@@ -65,8 +70,8 @@
     {
       "Brand": "Canon",
       "Name": "Máy in 2",
-      "Model": "imageCLASS MF743Cdw",
-      "Status": "Active",
+      "Model": "WorkForce Pro WF-7840",
+      "Status": "Đang hoạt động",
       "CampusName": "Cơ sở 2",
       "Building": "H6",
       "RoomNumber": "203",
@@ -77,7 +82,7 @@
       "Brand": "Epson",
       "Name": "Máy in 3",
       "Model": "WorkForce Pro WF-7840",
-      "Status": "Inactive",
+      "Status": "Đang hoạt động",
       "CampusName": "Cơ sở 1",
       "Building": "B4",
       "RoomNumber": "302",
@@ -88,8 +93,8 @@
       "Brand": "Brother",
       "Name": "Máy in 4",
       "Model": "HL-L3270CDW",
-      "Status": "Active",
-      "CampusName": "cơ sở 1",
+      "Status": "Đang hoạt động",
+      "CampusName": "Cơ sở 1",
       "Building": "C4",
       "RoomNumber": "305",
       "Description": "Reliable color laser printer for office use",
@@ -99,8 +104,8 @@
       "Brand": "Lexmark",
       "Name": "Máy in 5",
       "Model": "MB3442i",
-      "Status": "Active",
-      "CampusName": "cơ sở 2",
+      "Status": "Đang hoạt động",
+      "CampusName": "Cơ sở 2",
       "Building": "B1",
       "RoomNumber": "102",
       "Description": "Compact multifunction printer with wireless connectivity",
@@ -110,8 +115,8 @@
       "Brand": "Samsung",
       "Name": "Máy in 6",
       "Model": "Xpress M2020W",
-      "Status": "Inactive",
-      "CampusName": "cơ sở 2",
+      "Status": "Đang hoạt động",
+      "CampusName": "Cơ sở 2",
       "Building": "A5",
       "RoomNumber": "101",
       "Description": "Compact monochrome laser printer with wireless printing",
@@ -132,6 +137,41 @@
       "paymentMethod": "Thẻ tín dụng",
       "amount": 10000,
       "purchasedDate": "2024-11-30T10:09:31.520Z"
+    },
+    {
+      "id": "d764",
+      "userId": "2252617",
+      "paymentMethod": "Thẻ tín dụng",
+      "amount": 50000,
+      "purchasedDate": "2024-11-30T10:17:34.094Z"
+    },
+    {
+      "id": "0e48",
+      "userId": "2252617",
+      "paymentMethod": "Thẻ tín dụng",
+      "amount": 6000,
+      "purchasedDate": "2024-11-30T10:17:39.318Z"
+    },
+    {
+      "id": "b2f9",
+      "userId": "2252617",
+      "paymentMethod": "Chuyển khoản ngân hàng",
+      "amount": 61500,
+      "purchasedDate": "2024-11-30T10:28:55.860Z"
+    },
+    {
+      "id": "a719",
+      "userId": "2252666",
+      "paymentMethod": "Thẻ tín dụng",
+      "amount": 50000,
+      "purchasedDate": "2024-12-01T08:51:41.648Z"
+    },
+    {
+      "id": "8ec9",
+      "userId": "2252666",
+      "paymentMethod": "Ví điện tử",
+      "amount": 100000,
+      "purchasedDate": "2024-12-01T08:51:57.317Z"
     }
   ]
 }

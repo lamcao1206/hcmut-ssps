@@ -14,6 +14,7 @@ import History from './pages/student/History';
 import SPSODashboard from './pages/spso/SPSODashboard';
 import SPSOProfile from './pages/spso/SPSOProfile';
 import SystemConfig from './pages/spso/SystemConfig';
+import PrinterManagement from './pages/spso/PrinterManagement';
 
 export default function App() {
   const { user } = useAuth();
@@ -37,8 +38,9 @@ export default function App() {
         {user && user.role == 'spso' && (
           <Route>
             <Route path="/" element={<SPSODashboard />} />
+            <Route path="/printer-management" element={<PrinterManagement />} />
+            <Route path="/system-config" element={<SystemConfig />} />
             <Route path="/profile" element={<SPSOProfile />} />
-            <Route path="/config" element={<SystemConfig />} />
           </Route>
         )}
         <Route path="/" element={<Welcome />} />

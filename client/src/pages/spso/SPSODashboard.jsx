@@ -98,7 +98,7 @@ export default function SPSODashboard() {
         </div>
         <div className="grid grid-cols-3 gap-6">
           <div className="col-span-2 bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">Đơn in</h2>
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">Đơn in gần nhất</h2>
             <PrintRequest fileName="Computer_Network.pdf" date="18/10/2024" pages="24 Trang" status="success" />
             <PrintRequest fileName="DSA.pdf" date="20/10/2024" pages="24 Trang" status="pending" />
             <PrintRequest fileName="PPL.pdf" date="09/10/2024" pages="24 Trang" status="error" />
