@@ -74,7 +74,6 @@ export default function LoginForm({ role, inputs }) {
             placeholder={input.placeholder}
             onChange={(e) => {
               if (input.type === 'email') {
-                console.log('yeah');
                 setEmail(e.target.value);
               } else if (input.type === 'password') {
                 setPassword(e.target.value);

@@ -2,8 +2,7 @@
   "system": {
     "allowExtensions": [
       "pdf",
-      "docx",
-      "png"
+      "docx"
     ],
     "defaultPages": 300
   },
@@ -25,12 +24,11 @@
       "id": "2252617",
       "avatar": "/src/assets/phu.png",
       "role": "student",
-      "files": [],
       "name": "Đặng Ngọc Phú",
       "email": "phu.dangngoc@hcmut.edu.vn",
       "password": "123456",
       "gender": "Nam",
-      "page": "335",
+      "page": "3200",
       "registerDate": "2021-07-15T00:00:00Z",
       "lastAccessDate": "2021-07-15T00:00:00Z"
     }
@@ -125,53 +123,97 @@
   ],
   "transaction": [
     {
-      "id": "3978",
-      "userId": "2252666",
-      "paymentMethod": "Thẻ tín dụng",
-      "amount": 50000,
-      "purchasedDate": "2024-11-30T10:08:13.206Z"
-    },
-    {
-      "id": "13c4",
-      "userId": "2252666",
-      "paymentMethod": "Thẻ tín dụng",
-      "amount": 10000,
-      "purchasedDate": "2024-11-30T10:09:31.520Z"
-    },
-    {
-      "id": "d764",
+      "id": "a238",
       "userId": "2252617",
       "paymentMethod": "Thẻ tín dụng",
-      "amount": 50000,
-      "purchasedDate": "2024-11-30T10:17:34.094Z"
+      "amount": 2500000,
+      "purchasedDate": "2024-12-02T12:32:34.604Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "d0aa",
+      "printer": "Máy in 1",
+      "printSides": "2 mặt",
+      "paperSize": "A4",
+      "printCount": "1",
+      "printOrientation": "Ngang",
+      "documentName": "Báo cáo BTL DB 1.pdf",
+      "documentPage": 50,
+      "studentId": "2252617",
+      "status": "Đã huỷ",
+      "startDate": "12/2/2024, 10:18:04 AM",
+      "endDate": "12/2/2024, 10:18:04 AM"
     },
     {
-      "id": "0e48",
-      "userId": "2252617",
-      "paymentMethod": "Thẻ tín dụng",
-      "amount": 6000,
-      "purchasedDate": "2024-11-30T10:17:39.318Z"
+      "id": "e3ff",
+      "printer": "Máy in 1",
+      "printSides": "1 mặt",
+      "paperSize": "A3",
+      "printCount": "3",
+      "printOrientation": "Thẳng đứng",
+      "documentName": "Báo cáo BTL DB 1.pdf",
+      "documentPage": 100,
+      "studentId": "2252617",
+      "status": "Hoàn thành",
+      "startDate": "12/2/2024, 7:33:04 PM",
+      "endDate": "15/2/2024, 7:33:04 PM"
     },
     {
-      "id": "b2f9",
-      "userId": "2252617",
-      "paymentMethod": "Chuyển khoản ngân hàng",
-      "amount": 61500,
-      "purchasedDate": "2024-11-30T10:28:55.860Z"
+      "id": "4f52",
+      "printer": "Máy in 2",
+      "printSides": "2 mặt",
+      "paperSize": "A3",
+      "printCount": "10",
+      "printOrientation": "Thẳng đứng",
+      "documentName": "report.pdf",
+      "documentPage": 50,
+      "studentId": "2252617",
+      "status": "Đang in",
+      "startDate": "12/2/2024, 7:43:06 PM",
+      "endDate": "12/2/2024, 7:43:06 PM"
     },
     {
-      "id": "a719",
-      "userId": "2252666",
-      "paymentMethod": "Thẻ tín dụng",
-      "amount": 50000,
-      "purchasedDate": "2024-12-01T08:51:41.648Z"
+      "id": "3789",
+      "printer": "Máy in 1",
+      "printSides": "1 mặt",
+      "paperSize": "A3",
+      "printCount": "3",
+      "printOrientation": "Ngang",
+      "documentName": "report.pdf",
+      "documentPage": 200,
+      "studentId": "2252617",
+      "status": "Đang in",
+      "startDate": "12/2/2024, 8:10:04 PM",
+      "endDate": "12/2/2024, 8:10:04 PM"
     },
     {
-      "id": "8ec9",
-      "userId": "2252666",
-      "paymentMethod": "Ví điện tử",
-      "amount": 100000,
-      "purchasedDate": "2024-12-01T08:51:57.317Z"
+      "id": "31eb",
+      "printer": "Máy in 1",
+      "printSides": "1 mặt",
+      "paperSize": "A4",
+      "printCount": 1,
+      "printOrientation": "Thẳng đứng",
+      "documentName": "report.pdf",
+      "documentPage": 200,
+      "studentId": "2252617",
+      "status": "Đang in",
+      "startDate": "12/2/2024, 8:17:00 PM",
+      "endDate": "12/2/2024, 8:17:00 PM"
+    },
+    {
+      "id": "8fa9",
+      "printer": "Máy in 1",
+      "printSides": "2 mặt",
+      "paperSize": "A3",
+      "printCount": "5",
+      "printOrientation": "Thẳng đứng",
+      "documentName": "report.pdf",
+      "documentPage": 50,
+      "studentId": "2252617",
+      "status": "Đang in",
+      "startDate": "12/2/2024, 8:28:34 PM",
+      "endDate": "12/2/2024, 8:28:34 PM"
     }
   ]
 }

@@ -1,55 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import OrderFilter from '../../components/history/OrderFilter';
-
-const getStatusClass = (status) => {
-  switch (status) {
-    case 'Hoàn thành':
-      return 'bg-green-500 text-white';
-    case 'Đang in':
-      return 'bg-blue-500 text-white';
-    case 'Bị hủy':
-      return 'bg-red-500 text-white';
-    default:
-      return 'bg-gray-200 text-black';
-  }
-};
-
-function StatusInfo({ status }) {
-  const statusClass = getStatusClass(status);
-  return <p className={`rounded-lg font-bold p-1 text-center ${statusClass}`}>{status}</p>;
-}
+import axios from 'axios';
+import { useAuth } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import StatusInfo from '../../components/history/StatusInfo';
 
 export default function History() {
-  const data = [
-    {
-      id: 1,
-      name: 'Computer_Network.pdf',
-      printer: 'Máy in 1',
-      startTime: '18/10/2024, 09:01:01',
-      endTime: '20/10/2024, 11:01:01',
-      status: 'Hoàn thành',
-    },
-    {
-      id: 2,
-      name: 'Database_Design.pdf',
-      printer: 'Máy in 10',
-      startTime: '18/10/2024, 09:01:01',
-      endTime: '18/10/2024, 09:01:01',
-      status: 'Đang in',
-    },
-    {
-      id: 3,
-      name: 'Database_Design.pdf',
-      printer: 'Máy in 10',
-      startTime: '18/10/2024, 09:01:01',
-      endTime: '18/10/2024, 09:01:01',
-      status: 'Bị hủy',
-    },
-  ];
-
+  const { user } = useAuth();
+  const [orders, setOrders] = useState([]);
   const [printerFilter, setPrinterFilter] = useState('');
   const [startDateFilter, setStartDateFilter] = useState('');
   const [endDateFilter, setEndDateFilter] = useState('');
+  const [printers, setPrinters] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/orders?studentId=${user.id}`);
+        const data = response.data;
+        setOrders(data);
+
+        const uniquePrinters = [...new Set(data.map((order) => order.printer))];
+        setPrinters(uniquePrinters);
+      } catch (err) {
+        console.error('Error fetching orders:', err);
+      }
+    };
+
+    fetchOrders();
+  }, []);
 
   const resetFilters = () => {
     setPrinterFilter('');
@@ -57,10 +37,10 @@ export default function History() {
     setEndDateFilter('');
   };
 
-  const filteredData = data.filter((item) => {
+  const filteredData = orders.filter((item) => {
     const matchesPrinter = printerFilter ? item.printer === printerFilter : true;
-    const matchesStartDate = startDateFilter ? new Date(item.startTime) >= new Date(startDateFilter) : true;
-    const matchesEndDate = endDateFilter ? new Date(item.endTime) <= new Date(endDateFilter) : true;
+    const matchesStartDate = startDateFilter ? new Date(item.startDate) >= new Date(startDateFilter) : true;
+    const matchesEndDate = endDateFilter ? new Date(item.endDate) <= new Date(endDateFilter) : true;
     return matchesPrinter && matchesStartDate && matchesEndDate;
   });
 
@@ -73,11 +53,7 @@ export default function History() {
             label="Chọn máy in"
             value={printerFilter}
             onChange={(e) => setPrinterFilter(e.target.value)}
-            options={[
-              { value: '', label: 'Tất cả' },
-              { value: 'Máy in 1', label: 'Máy in 1' },
-              { value: 'Máy in 10', label: 'Máy in 10' },
-            ]}
+            options={[{ value: '', label: 'Tất cả' }, ...printers.map((printer) => ({ value: printer, label: printer }))]}
             inputType="select"
             width="w-1/4"
           />
@@ -104,17 +80,22 @@ export default function History() {
               {filteredData.map((item) => (
                 <tr key={item.id} className="hover:bg-gray-100 text-center">
                   <td className="border border-gray-300 px-4 py-2">{item.id}</td>
-                  <td className="border border-gray-300 px-4 py-2">{item.name}</td>
+                  <td className="border border-gray-300 px-4 py-2">{item.documentName}</td>
                   <td className="border border-gray-300 px-4 py-2">{item.printer}</td>
-                  <td className="border border-gray-300 px-4 py-2">{item.startTime}</td>
-                  <td className="border border-gray-300 px-4 py-2">{item.endTime}</td>
+                  <td className="border border-gray-300 px-4 py-2">{item.startDate}</td>
+                  <td className="border border-gray-300 px-4 py-2">{item.endDate}</td>
                   <td className="border border-gray-300 px-4 py-2">
                     <StatusInfo status={item.status} />
                   </td>
                   <td className="border border-gray-300 px-4 py-2 text-center">
-                    <a href="#" className="text-blue-500 underline hover:text-blue-700">
+                    <button
+                      className="text-blue-500 underline hover:text-blue-700"
+                      onClick={() => {
+                        navigate(`/orders/${item.id}`);
+                      }}
+                    >
                       Xem
-                    </a>
+                    </button>
                   </td>
                 </tr>
               ))}

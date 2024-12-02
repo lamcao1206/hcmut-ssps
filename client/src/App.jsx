@@ -15,6 +15,9 @@ import SPSODashboard from './pages/spso/SPSODashboard';
 import SPSOProfile from './pages/spso/SPSOProfile';
 import SystemConfig from './pages/spso/SystemConfig';
 import PrinterManagement from './pages/spso/PrinterManagement';
+import SPSOReport from './pages/spso/SPSOReport';
+import Success from './pages/student/Success';
+import OrderDetail from './pages/student/OrderDetail';
 
 export default function App() {
   const { user } = useAuth();
@@ -28,9 +31,11 @@ export default function App() {
             <Route path="/payment" element={<Purchase />} />
             <Route path="/profile" element={<StudentProfile />} />
             <Route path="/orders" element={<History />} />
+            <Route path="/orders/:orderId" element={<OrderDetail />} />
             <Route path="print">
               <Route index element={<Print />} />
               <Route path="config" element={<DocumentConfig />} />
+              <Route path="success" element={<Success />} />
             </Route>
           </Route>
         )}
@@ -41,6 +46,7 @@ export default function App() {
             <Route path="/printer-management" element={<PrinterManagement />} />
             <Route path="/system-config" element={<SystemConfig />} />
             <Route path="/profile" element={<SPSOProfile />} />
+            <Route path="/report" element={<SPSOReport />} />
           </Route>
         )}
         <Route path="/" element={<Welcome />} />

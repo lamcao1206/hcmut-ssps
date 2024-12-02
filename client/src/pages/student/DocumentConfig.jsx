@@ -3,6 +3,49 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
+function ConfigModal({ isOpen, config, onClose, onConfirm }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+        <h2 className="text-xl font-bold text-blue-600 mb-4">Xác nhận cấu hình</h2>
+        <div className="space-y-4">
+          <p>
+            <span className="font-semibold">Tên tài liệu:</span> {config.documentName}
+          </p>
+          <p>
+            <span className="font-semibold">Máy in:</span> {config.printer}
+          </p>
+          <p>
+            <span className="font-semibold">Số mặt in:</span> {config.printSides}
+          </p>
+          <p>
+            <span className="font-semibold">Khổ giấy:</span> {config.paperSize}
+          </p>
+          <p>
+            <span className="font-semibold">Số lượng in:</span> {config.printCount}
+          </p>
+          <p>
+            <span className="font-semibold">Hướng in:</span> {config.printOrientation}
+          </p>
+          <p>
+            <span className="font-semibold">Tổng số trang:</span> {config.paperSize === 'A4' ? config.documentPage * config.printCount : (config.documentPage * config.printCount) / 2}
+          </p>
+        </div>
+        <div className="flex justify-end gap-2 mt-6">
+          <button className="px-4 py-2 bg-gray-300 text-gray-700 font-bold rounded hover:bg-gray-400" onClick={onClose}>
+            Quay lại
+          </button>
+          <button className="px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700" onClick={onConfirm}>
+            Xác nhận
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ConfigInput({ label, id, options, value, onChange, name, disabled = false, init = '' }) {
   return (
     <div className="flex items-center justify-between">
@@ -67,7 +110,7 @@ function PrinterInput({ label, id, printers, value, onChange, disabled = false, 
   );
 }
 
-function NumberInput({ label, id, value, onChange, placeholder = '', disabled = false }) {
+function NumberInput({ name, label, id, onChange, config, placeholder = '', disabled = false }) {
   return (
     <div className="flex items-center justify-between">
       <label className="text-gray-700 text-md font-bold mb-2" htmlFor={id}>
@@ -76,8 +119,9 @@ function NumberInput({ label, id, value, onChange, placeholder = '', disabled = 
       <div className="flex items-center">
         <input
           type="text"
+          name={name}
           id={id}
-          value={value}
+          value={config[name]}
           onChange={onChange}
           className="appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           placeholder={placeholder}
@@ -109,28 +153,30 @@ export default function DocumentConfig() {
   const params = new URLSearchParams(location.search);
   const fileName = params.get('file');
   const filePath = `/src/assets/report.pdf`;
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const [printers, setPrinters] = useState([]);
   const [selectedCampus, setSelectedCampus] = useState('');
-  const [page, setPage] = useState(100);
   const [config, setConfig] = useState({
     printer: '',
-    printStart: '',
-    printEnd: '',
     printSides: '',
-    paperSize: '',
-    printCount: '',
+    paperSize: 'A4',
+    printCount: 1,
     printOrientation: '',
     documentName: fileName,
+    documentPage: 100,
     studentId: user.id,
+    status: 'Đang in',
+    startDate: '',
+    endDate: '',
   });
 
   useEffect(() => {
     const fetchPrinters = async () => {
       try {
         const response = await axios.get('http://localhost:3000/printers');
-        setPrinters(response.data);
+        setPrinters(response.data.filter((printer) => printer.Status === 'Đang hoạt động'));
       } catch (err) {
         console.error(err);
       }
@@ -139,6 +185,14 @@ export default function DocumentConfig() {
     fetchPrinters();
   }, []);
 
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
   const handleCancel = (e) => {
     e.preventDefault();
     navigate('/print');
@@ -146,13 +200,57 @@ export default function DocumentConfig() {
 
   const handleConfigChange = (e) => {
     const { name, value } = e.target;
-    setConfig((prevConfig) => {
-      const newConfig = { ...prevConfig, [name]: value };
-      if (newConfig.printSides === '2 mặt') {
-        setPage((prevPage) => prevPage / 2);
+    setConfig((prevConfig) => ({
+      ...prevConfig,
+      [name]: value,
+    }));
+
+    if (name === 'printSides') {
+      if (value === '2 mặt') {
+        const page = config['documentPage'];
+        setConfig((prevConfig) => ({
+          ...prevConfig,
+          documentPage: page / 2,
+        }));
+      } else if (value === '1 mặt') {
+        const page = config['documentPage'];
+        setConfig((prevConfig) => ({
+          ...prevConfig,
+          documentPage: page * 2,
+        }));
       }
-      return newConfig;
-    });
+    }
+  };
+
+  const handleConfirm = async () => {
+    setModalOpen(false);
+
+    const pages = config.documentPage * config.printCount;
+    if (pages > Number(user.page)) {
+      alert('Số trang hiện tại của bạn không đủ, hãy mua thêm.');
+      navigate('/payment');
+      return;
+    }
+
+    const currentDate = new Date().toLocaleString();
+    config.startDate = currentDate;
+    config.endDate = currentDate;
+
+    const { files, order, ...rest } = user;
+
+    try {
+      const newUser = await axios.put(`http://localhost:3000/student/${user.id}`, {
+        ...rest,
+        page: (Number(user.page) - pages).toString(),
+      });
+
+      const response = await axios.post('http://localhost:3000/orders', config);
+      setUser({ ...newUser.data, files, order: response.data });
+      navigate('/print/success');
+    } catch (err) {
+      console.error(err);
+      alert('Đã xảy ra lỗi, vui lòng thử lại.');
+    }
   };
 
   const filteredPrinters = printers.filter((printer) => printer.CampusName === selectedCampus);
@@ -163,10 +261,13 @@ export default function DocumentConfig() {
         <PDFDisplay filePath={filePath} />
         <div className="bg-white shadow-lg rounded-lg w-full md:w-1/2 h-[85vh] p-4">
           <h2 className="text-xl font-bold text-blue-600 mb-1">Thiết lập cấu hình in</h2>
-          <h3 className="text-base font-semibold mb-5 text-gray-500">
-            Tổng số trang hiện tại: <span className="font-bold">{page}</span>
+          <h3 className="text-base font-semibold mb-10 text-gray-500">
+            Tổng số trang hiện tại:{' '}
+            <span className="font-bold">
+              {config.paperSize === 'A4' ? config.documentPage * Number(config.printCount) : (config.documentPage * Number(config.printCount)) / 2} ({config.paperSize})
+            </span>
           </h3>
-          <div className="space-y-5">
+          <div className="space-y-8">
             <ConfigInput
               label="Cơ sở"
               id="campus"
@@ -183,11 +284,9 @@ export default function DocumentConfig() {
               }}
             />
             <PrinterInput label="Máy in" id="printer" name="printer" printers={filteredPrinters} value={config.printer} onChange={handleConfigChange} disabled={!selectedCampus} />
-            <NumberInput label="Trang bắt đầu" id="printRange" name="printRange" placeholder="Trang bắt đầu" value={config.printStart} onChange={handleConfigChange} />
-            <NumberInput label="Trang kết thúc" id="printRange" name="printRange" placeholder="Trang kết thúc" value={config.printEnd} onChange={handleConfigChange} />
             <ConfigInput label="Số mặt in" init="Chọn số mặt in" id="printSides" name="printSides" options={['1 mặt', '2 mặt']} value={config.printSides} onChange={handleConfigChange} />
             <ConfigInput label="Khổ giấy" init="Chọn khổ giấy" id="paperSize" name="paperSize" options={['A3', 'A4']} value={config.paperSize} onChange={handleConfigChange} />
-            <NumberInput label="Số lượng in" id="printCount" name="printCount" placeholder="Nhập số lượng in" value={config.printCount} onChange={handleConfigChange} />
+            <NumberInput label="Số lượng in" id="printCount" name="printCount" placeholder="Nhập số lượng in" config={config} onChange={handleConfigChange} />
             <ConfigInput
               label="Hướng in"
               init="Chọn hướng in"
@@ -198,14 +297,17 @@ export default function DocumentConfig() {
               onChange={handleConfigChange}
             />
           </div>
-          <div className="flex justify-end gap-2 mt-7">
+          <div className="flex justify-end gap-2 mt-[60px]">
             <button className="px-4 py-2 bg-gray-300 text-gray-700 font-bold rounded hover:bg-gray-400" onClick={handleCancel}>
               Quay lại
             </button>
-            <button className="px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700">Xác nhận</button>
+            <button className="px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700" onClick={handleOpenModal}>
+              Xác nhận
+            </button>
           </div>
         </div>
       </div>
+      <ConfigModal isOpen={isModalOpen} config={config} onClose={handleCloseModal} onConfirm={handleConfirm} />
     </div>
   );
 }
