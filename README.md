@@ -1,5 +1,7 @@
 # HCMUT Student Smart Printing Service (HCMUT_SSPS)
 
+**Disclaimer**: The Backend of this Project was rewritten in Java in the following repo: [HCMUT SSPS Server](https://github.com/lamcao1206/hcmut-ssps-server)
+
 ## Project Background
 
 ### Project Origin
